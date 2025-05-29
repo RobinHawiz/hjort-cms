@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="sv">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- Makes the loading of google fonts non-render blocking -->
+    <link
+      rel="preload"
+      href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Montserrat:wght@400;500;700&display=swap"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Montserrat:wght@400;500;700&display=swap"
+        rel="stylesheet"
+        type="text/css"
+      />
+    </noscript>
+    <link rel="icon" type="image/svg+xml" href="hjort_symbol.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hjort CMS | Logga in</title>
+    <script type="module" crossorigin src="/hjort-cms/js/login-BAtHr3Uw.js"></script>
+    <link rel="stylesheet" crossorigin href="/hjort-cms/styles/login-DfDcEIEi.css">
+  </head>
+  <body>
+    <nav id="side-nav" class="closed">
+      <div class="logo-wrapper">
+        <img src="hjort_cms_logo.svg" alt="Företagets logga" />
+      </div>
+      <ul>
+        <li>
+          <button
+            class="toggle-button opened"
+            aria-label="Stäng meny"
+            aria-expanded="false"
+            aria-controls="side-nav"
+          >
+            <img src="chevrons.svg" alt="Två pilar som pekar åt vänster" />
+          </button>
+        </li>
+        <li>
+          <a class="active" href=".">
+            <img src="user.svg" alt="Användare ikon" />
+            <p>Logga in</p>
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <main id="login-page">
+      <section id="login">
+        <h1>
+          Välkommen <br />
+          till <span class="cms-name">Hjort CMS</span>
+        </h1>
+        <form>
+          <div class="input-box">
+            <label for="username">Användarnamn</label>
+            <input type="text" id="username" name="username" required />
+          </div>
+          <div class="input-box">
+            <label for="passwordHash">Lösenord</label>
+            <input type="text" id="passwordHash" name="passwordHash" required />
+          </div>
+          <button type="submit">Logga in<span class="loader"></span></button>
+        </form>
+      </section>
+    </main>
+  </body>
+</html>
