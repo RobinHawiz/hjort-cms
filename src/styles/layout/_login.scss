@@ -1,0 +1,114 @@
+@use "../abstracts/mixins" as m;
+
+#login-page {
+  @include m.flex(center, center, column);
+  width: 100%;
+  @include m.media-query(mobile) {
+    padding-left: 6rem;
+  }
+}
+
+#login {
+  @include m.flex(center, normal, column);
+  max-width: 59rem;
+  width: 95%;
+  min-height: 60rem;
+  border-radius: 0.5rem;
+  padding-top: 5rem;
+  h1 {
+    margin-bottom: 4.5rem;
+  }
+  form {
+    position: relative;
+    max-width: 30rem;
+    width: 95%;
+    transition: padding-top 0.2s ease;
+    &.validation-error {
+      padding-top: 2rem;
+    }
+    .input-box {
+      @include m.flex(normal, normal, column);
+      margin-bottom: 2.4rem;
+    }
+    label {
+      margin-bottom: 1.3rem;
+    }
+    input {
+      padding: 1rem;
+      border-radius: 0.5rem;
+    }
+    button[type="submit"] {
+      width: 100%;
+      padding: 1rem;
+      margin-top: 2rem;
+      border-radius: 1rem;
+      transition: background-color 0.2s ease;
+    }
+  }
+  .error {
+    position: absolute;
+    top: -3rem;
+    padding: 1rem;
+    margin-bottom: 1.3rem;
+    border-radius: 1rem;
+    animation: slide-in 0.2s ease 0s;
+    @include m.media-query(mobile) {
+      top: -4.5rem;
+      animation: slide-in-mobile 0.2s ease 0s;
+    }
+    &.hide {
+      animation: slide-out 0.2s ease 0s;
+      @include m.media-query(mobile) {
+        animation: slide-out-mobile 0.2s ease 0s;
+      }
+    }
+  }
+}
+
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    top: -10rem;
+  }
+
+  to {
+    opacity: 1;
+    top: -3rem;
+  }
+}
+
+@keyframes slide-out {
+  from {
+    opacity: 1;
+    top: -3rem;
+  }
+
+  to {
+    opacity: 0;
+    top: -10rem;
+  }
+}
+
+@keyframes slide-in-mobile {
+  from {
+    opacity: 0;
+    top: -10rem;
+  }
+
+  to {
+    opacity: 1;
+    top: -4.5rem;
+  }
+}
+
+@keyframes slide-out-mobile {
+  from {
+    opacity: 1;
+    top: -4.5rem;
+  }
+
+  to {
+    opacity: 0;
+    top: -10rem;
+  }
+}

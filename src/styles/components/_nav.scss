@@ -1,0 +1,78 @@
+@use "../abstracts/mixins" as m;
+
+nav {
+  position: sticky;
+  top: 0;
+  width: 25rem;
+  height: 100vh;
+  height: 100dvh;
+  padding: 2rem;
+  transition: width 0.2s ease;
+  z-index: 10;
+  &.closed {
+    width: 6rem;
+    padding: 1rem;
+    .toggle-button {
+      right: 1.2rem;
+    }
+    .logo-wrapper {
+      width: 3.7rem;
+      height: 8.3rem;
+      margin-block: 4rem;
+    }
+    a {
+      padding: 0.5rem;
+      img {
+        padding-left: 0.3rem;
+      }
+    }
+    p {
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+  @include m.media-query(mobile) {
+    position: fixed;
+  }
+  .logo-wrapper {
+    width: 11rem;
+    height: 24.9rem;
+    margin-inline: auto;
+    margin-bottom: 7rem;
+    transition: all 0.11s ease;
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .toggle-button {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    border-radius: 0.5rem;
+    transition: all 0.2s ease;
+    &.opened {
+      img {
+        rotate: 0deg;
+      }
+    }
+    img {
+      transition: rotate 0.2s ease;
+      rotate: 180deg;
+    }
+  }
+  a {
+    @include m.flex(center, normal, row);
+    gap: 1rem;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    transition: box-shadow 0.2s ease, background-color 0.2s ease;
+    img {
+      transition: padding-right 0.2s ease;
+    }
+  }
+  p {
+    text-wrap: nowrap;
+    transition: all 0.2s ease;
+  }
+}

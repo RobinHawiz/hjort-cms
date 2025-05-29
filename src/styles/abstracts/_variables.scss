@@ -1,0 +1,22 @@
+// Colors
+
+$text-color: #0d0d0d;
+$bg-color: #f2f2f4;
+$section-bg-color: #ffffff;
+$section-drop-shadow-color: #64646f;
+$active-link-color: rgba(255, 255, 255, 0.1);
+$input-border-color: #9292b0;
+$login-button-bg-color: #8989a9;
+
+// Font sizes
+
+$h1-font: 4.4rem;
+$p-font: 1.4rem;
+$nav-link-font: 1.4rem;
+
+$h1-mobile-font: 3.4rem;
+$error-mobile-font: 1.2rem;
+
+$breakpoints: (
+  "mobile": 650px,
+);

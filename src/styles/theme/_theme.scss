@@ -1,0 +1,92 @@
+@use "../abstracts/variables" as v;
+
+body {
+  color: v.$text-color;
+  background-color: v.$bg-color;
+}
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+li {
+  list-style-type: none;
+}
+
+a {
+  color: v.$text-color;
+  text-decoration: none;
+}
+
+.active {
+  background-color: v.$active-link-color;
+}
+
+.error {
+  background-color: rgba(255, 51, 51, 0.9);
+  color: v.$bg-color;
+}
+
+/* Nav stylings */
+
+nav {
+  background-color: v.$text-color;
+  box-shadow: 0.5rem 0 1.2rem 0.2rem rgba(0, 0, 0, 0.3);
+  .toggle-button,
+  a {
+    &:hover {
+      background-color: v.$active-link-color;
+    }
+  }
+  a.active {
+    &:hover {
+      background-color: rgba($color: v.$bg-color, $alpha: 0.2);
+    }
+  }
+  a:focus,
+  .toggle-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 0.2rem rgba($color: v.$bg-color, $alpha: 0.7);
+  }
+  // Remove focus styles for non-keyboard focus to prevent styles from applying on mouse click.
+  a:focus:not(:focus-visible),
+  .toggle-button:focus:not(:focus-visible),
+  button[type="submit"]:focus:not(:focus-visible) {
+    outline: 0;
+    box-shadow: none;
+  }
+  p {
+    color: v.$bg-color;
+  }
+}
+
+/* Login page styling */
+
+#login {
+  background-color: v.$section-bg-color;
+  box-shadow: 0 0.7rem 2.9rem
+    rgba($color: v.$section-drop-shadow-color, $alpha: 0.2);
+  input {
+    border: 0.1rem solid v.$input-border-color;
+  }
+  input:focus,
+  button:focus {
+    outline: none;
+    border-color: transparent;
+    box-shadow: 0 0 0 0.2rem rgba($color: v.$text-color, $alpha: 0.7);
+  }
+  button[type="submit"] {
+    background-color: v.$login-button-bg-color;
+    color: v.$bg-color;
+    &:hover {
+      background-color: rgba($color: v.$login-button-bg-color, $alpha: 0.9);
+    }
+    // Remove focus styles for non-keyboard focus to prevent styles from applying on mouse click.
+    &:focus:not(:focus-visible) {
+      outline: 0;
+      box-shadow: none;
+    }
+  }
+}

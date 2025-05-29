@@ -1,0 +1,60 @@
+@use "../abstracts/mixins" as m;
+@use "../abstracts/variables" as v;
+
+body {
+  font-family: "Montserrat", sans-serif;
+}
+
+h1 {
+  font-weight: 500;
+  font-size: v.$h1-font;
+  @include m.media-query(mobile) {
+    font-size: v.$h1-mobile-font;
+  }
+}
+
+p {
+  font-size: v.$p-font;
+}
+
+.cms-name {
+  font-family: "Abril Fatface", serif;
+}
+
+.bold {
+  font-weight: 700;
+}
+
+/* Form stylings */
+
+form {
+  font-size: v.$p-font;
+  input,
+  select,
+  textarea,
+  button {
+    font-size: v.$p-font;
+    font-family: "Montserrat", sans-serif;
+  }
+  label {
+    line-height: 1.45;
+  }
+}
+
+/* Nav stylings */
+
+nav {
+  p {
+    font-size: v.$nav-link-font;
+  }
+}
+
+/* Login page stylings */
+
+#login-page {
+  h1 {
+    @include m.media-query(mobile) {
+      font-size: v.$h1-mobile-font;
+    }
+  }
+}

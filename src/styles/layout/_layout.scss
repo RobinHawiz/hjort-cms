@@ -1,0 +1,18 @@
+@use "../abstracts/mixins" as m;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  @include m.flex(normal, normal, row);
+  position: relative;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
