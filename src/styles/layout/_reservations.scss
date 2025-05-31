@@ -1,0 +1,96 @@
+@use "../abstracts/mixins" as m;
+
+#reservations {
+  margin-left: 5rem;
+  @include m.media-query(mobile) {
+    margin-left: 1rem;
+  }
+}
+
+article {
+  max-width: 58rem;
+  width: 95%;
+  padding-inline: 1.5rem;
+  margin-bottom: 3rem;
+  border-radius: 0.5rem;
+  transition: all 0.4s ease;
+  overflow: hidden;
+  &[contains-message="true"] {
+    #content {
+      p.message {
+        padding: 0;
+      }
+    }
+  }
+  &:hover {
+    transform: translateY(-0.5rem);
+  }
+  .wrapper {
+    @include m.flex(center, normal, row);
+    gap: 0.3rem;
+  }
+  .top-card-info {
+    @include m.flex(normal, space-between, row);
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    padding-block: 1.5rem;
+    .col-1 {
+      @include m.flex(center, normal, row);
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+    .wrapper-container {
+      @include m.flex(center, normal, row);
+      gap: 0.6rem;
+      @include m.media-query(mobile) {
+        span {
+          display: none;
+        }
+      }
+    }
+  }
+  .toggle-content {
+    @include m.flex(center, space-between, row);
+    width: 6rem;
+    img {
+      transition: rotate 0.2s ease;
+    }
+    &.opened {
+      img {
+        rotate: 180deg;
+      }
+    }
+  }
+  #content {
+    padding-bottom: 1.5rem;
+    transform: translateY(-20%);
+    visibility: hidden;
+    opacity: 0;
+    transition: transform 0.4s ease, visibility 0.4s ease, opacity 0.2s ease;
+    &.show {
+      transform: translateY(0);
+      visibility: visible;
+      opacity: 1;
+    }
+    p.message {
+      padding-top: 0.7rem;
+      padding-bottom: 2.2rem;
+    }
+    .phone-number-wrapper {
+      margin-bottom: 1rem;
+    }
+    .email-cancel-button-container {
+      @include m.flex(center, space-between, row);
+      flex-wrap: wrap;
+      gap: 1.2rem;
+    }
+    a {
+      padding: 0.5rem;
+      border-radius: 1rem;
+    }
+    button {
+      padding: 0.5rem 1rem;
+      border-radius: 1rem;
+    }
+  }
+}

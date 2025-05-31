@@ -21,6 +21,8 @@ export default defineConfig(({ mode }) => {
       rollupOptions: {
         input: {
           login: resolve(__dirname, root, "index.html"),
+          reservations: resolve(__dirname, root, "bokningar", "index.html"),
+          editMenu: resolve(__dirname, root, "redigera-meny", "index.html"),
         },
         output: {
           entryFileNames: "js/[name]-[hash].js",

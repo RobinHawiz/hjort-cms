@@ -17,6 +17,11 @@ p {
   font-size: v.$p-font;
 }
 
+button {
+  font-family: "Montserrat", sans-serif;
+  font-size: v.$p-font;
+}
+
 .cms-name {
   font-family: "Abril Fatface", serif;
 }
@@ -49,6 +54,12 @@ nav {
   }
 }
 
+/* Loader stylings */
+
+.loader-text {
+  font-size: 2rem;
+}
+
 /* Login page stylings */
 
 #login-page {
@@ -56,5 +67,20 @@ nav {
     @include m.media-query(mobile) {
       font-size: v.$h1-mobile-font;
     }
+  }
+}
+
+/* Reservations page styling */
+
+#reservations {
+  font-weight: 500;
+  h3 {
+    font-size: v.$p-font;
+  }
+  .top-card-info .col-1 p {
+    font-weight: 700;
+  }
+  button {
+    font-weight: 500;
   }
 }

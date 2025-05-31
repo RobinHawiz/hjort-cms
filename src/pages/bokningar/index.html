@@ -16,14 +16,14 @@
         type="text/css"
       />
     </noscript>
-    <link rel="icon" type="image/svg+xml" href="hjort_symbol.svg" />
+    <link rel="icon" type="image/svg+xml" href="../hjort_symbol.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hjort CMS | Logga in</title>
+    <title>Hjort CMS | Bokningar</title>
   </head>
   <body>
     <nav id="side-nav" class="closed">
       <div class="logo-wrapper">
-        <img src="hjort_cms_logo.svg" alt="Företagets logga" />
+        <img src="../hjort_cms_logo.svg" alt="Företagets logga" />
       </div>
       <ul>
         <li>
@@ -33,43 +33,40 @@
             aria-expanded="false"
             aria-controls="side-nav"
           >
-            <img src="chevrons.svg" alt="Två pilar som pekar åt vänster" />
+            <img src="../chevrons.svg" alt="Två pilar som pekar åt vänster" />
           </button>
         </li>
         <li>
           <a class="active" href=".">
-            <img src="user.svg" alt="Användare ikon" />
-            <p>Logga in</p>
+            <img src="../book.svg" alt="Bok ikon" />
+            <p>Bokningar</p>
+          </a>
+        </li>
+        <li>
+          <a href="../redigera-meny/">
+            <img src="../edit.svg" alt="Bok ikon" />
+            <p>Redigera meny</p>
+          </a>
+        </li>
+        <li>
+          <a href="..">
+            <img src="../logout.svg" alt="Logga ut ikon" />
+            <p>Logga ut</p>
           </a>
         </li>
       </ul>
     </nav>
-    <main id="login-page">
-      <section id="login">
-        <h1>
-          Välkommen <br />
-          till <span class="cms-name">Hjort CMS</span>
-        </h1>
-        <form>
-          <div class="input-box">
-            <label for="username">Användarnamn</label>
-            <input type="text" id="username" name="username" required />
-          </div>
-          <div class="input-box">
-            <label for="passwordHash">Lösenord</label>
-            <input
-              type="password"
-              id="passwordHash"
-              name="passwordHash"
-              required
-            />
-          </div>
-          <button type="submit">Logga in<span class="loader"></span></button>
-        </form>
+    <main id="reservations-page">
+      <section id="reservations">
+        <h1>Bokningar</h1>
+        <div class="loader-wrapper">
+          <p class="loader-text">Hämtar bokningar</p>
+          <div class="loader"></div>
+        </div>
       </section>
     </main>
     <script type="module">
-      import "@ts/login/main.ts";
+      import "@ts/reservations/main.ts";
     </script>
   </body>
 </html>

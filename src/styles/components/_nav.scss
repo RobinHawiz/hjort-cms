@@ -1,6 +1,7 @@
 @use "../abstracts/mixins" as m;
 
 nav {
+  @include m.flex(normal, normal, column);
   position: sticky;
   top: 0;
   width: 25rem;
@@ -43,6 +44,15 @@ nav {
     img {
       width: 100%;
       height: 100%;
+    }
+  }
+  ul {
+    @include m.flex(normal, normal, column);
+    gap: 1.6rem;
+    height: 100%;
+    /* Makes sure that this only applies to the logout link. */
+    li:last-child:not(:nth-child(2)) {
+      margin-top: auto;
     }
   }
   .toggle-button {

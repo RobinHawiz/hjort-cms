@@ -62,7 +62,7 @@ async function login(
       submitButton.enable();
       submitButton.hideLoader();
       localStorage.setItem("token", data);
-      window.location.href = "/hjort-frontend/";
+      window.location.replace("/hjort-cms/bokningar/");
     })
     .catch((error) => {
       if (isResponseError(error)) {

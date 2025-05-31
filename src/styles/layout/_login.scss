@@ -2,10 +2,6 @@
 
 #login-page {
   @include m.flex(center, center, column);
-  width: 100%;
-  @include m.media-query(mobile) {
-    padding-left: 6rem;
-  }
 }
 
 #login {
