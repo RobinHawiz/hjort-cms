@@ -3,10 +3,12 @@
 @use "base/typography";
 
 // components
+@use "components/error";
 @use "components/loader";
 @use "components/nav";
 
 // layout
+@use "layout/edit_menu";
 @use "layout/layout";
 @use "layout/login";
 @use "layout/reservations";

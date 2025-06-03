@@ -13,7 +13,6 @@ async function main(): Promise<void> {
   initSmoothScroll();
   initNav();
   const reservations = await getReservations();
-  if (!reservations) return;
   const fragment = await createReservationsHtml(reservations);
   displayReservations(fragment);
   removeLoader();

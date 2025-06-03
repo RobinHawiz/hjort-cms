@@ -28,8 +28,8 @@
       <ul>
         <li>
           <button
-            class="toggle-button opened"
-            aria-label="Stäng meny"
+            class="toggle-button"
+            aria-label="Visa innehåll"
             aria-expanded="false"
             aria-controls="side-nav"
           >
@@ -56,9 +56,14 @@
         </li>
       </ul>
     </nav>
-    <main id="reservations-page">
-      <section id="reservations">
+    <main id="edit-menu-page">
+      <section id="edit-menu">
         <h1>Redigera meny</h1>
+        <div class="loader-wrapper">
+          <p class="loader-text">Hämtar meny</p>
+          <div class="loader"></div>
+        </div>
+        <div class="form-container"></div>
       </section>
     </main>
     <script type="module">

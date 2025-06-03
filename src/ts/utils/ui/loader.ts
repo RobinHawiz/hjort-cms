@@ -7,4 +7,7 @@ export function removeLoader(): void {
   if (!isHtmlElement(loader, LOADER_CONTAINER_SELECTOR)) return;
 
   loader.classList.add("remove");
+  setTimeout(() => {
+    loader.remove();
+  }, 200);
 }

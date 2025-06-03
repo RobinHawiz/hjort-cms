@@ -11,7 +11,7 @@ export class ReservationAPI {
 
   /**
    * Retrieves all reservation entities via GET /api/protected/reservations
-   * @returns A parsed array containing WorkExperienceEntity objects
+   * @returns A parsed array containing ReservationEntity objects
    */
   async getAll(): Promise<Array<ReservationEntity>> {
     return await fetchData(`${this.apiUrl}/reservations`, {

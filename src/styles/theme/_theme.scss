@@ -1,3 +1,4 @@
+@use "sass:color";
 @use "../abstracts/variables" as v;
 
 body {
@@ -60,31 +61,38 @@ nav {
   }
 }
 
+/* Form styling */
+
+input {
+  border: 0.1rem solid v.$input-border-color;
+
+  &.delete {
+    background-color: v.$delete-bg-color;
+  }
+}
+input:focus,
+button:focus {
+  outline: none;
+  border-color: transparent;
+  box-shadow: 0 0 0 0.2rem rgba($color: v.$text-color, $alpha: 0.7);
+}
+// Remove focus styles for non-keyboard focus to prevent styles from applying on mouse click.
+button:focus:not(:focus-visible) {
+  outline: 0;
+  box-shadow: none;
+}
+
 /* Login page styling */
 
 #login {
   background-color: v.$section-bg-color;
   box-shadow: 0 0.7rem 2.9rem
     rgba($color: v.$section-drop-shadow-color, $alpha: 0.2);
-  input {
-    border: 0.1rem solid v.$input-border-color;
-  }
-  input:focus,
-  button:focus {
-    outline: none;
-    border-color: transparent;
-    box-shadow: 0 0 0 0.2rem rgba($color: v.$text-color, $alpha: 0.7);
-  }
   button[type="submit"] {
     background-color: v.$login-button-bg-color;
     color: v.$bg-color;
     &:hover {
       background-color: rgba($color: v.$login-button-bg-color, $alpha: 0.9);
-    }
-    // Remove focus styles for non-keyboard focus to prevent styles from applying on mouse click.
-    &:focus:not(:focus-visible) {
-      outline: 0;
-      box-shadow: none;
     }
   }
 }
@@ -118,5 +126,38 @@ nav {
   button.cancel {
     color: v.$delete-text-color;
     background-color: v.$delete-bg-color;
+  }
+}
+
+/* Edit menu page styling */
+
+#edit-menu {
+  form {
+    background-color: v.$article-bg-color;
+    &:hover {
+      box-shadow: 0 0.7rem 1rem 0
+        rgba($color: v.$article-drop-shadow-color, $alpha: 0.2);
+    }
+    button {
+      &.delete {
+        background-color: v.$delete-bg-color;
+        &:hover {
+          background-color: color.adjust(v.$delete-bg-color, $lightness: -5%);
+        }
+      }
+      &.add-course {
+        background-color: v.$add-bg-color;
+        &:hover {
+          background-color: color.adjust(v.$add-bg-color, $lightness: -5%);
+        }
+      }
+      &.update {
+        color: v.$update-text-color;
+        background-color: v.$update-bg-color;
+        &:hover {
+          background-color: color.adjust(v.$update-bg-color, $lightness: -5%);
+        }
+      }
+    }
   }
 }
