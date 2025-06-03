@@ -1,7 +1,15 @@
 import { CourseEntity, CourseMenuEntity, CourseMenuObj } from "@ts/types";
 import { CourseMenuAPI } from "@ts/utils/api";
 
-export async function getCourseMenuData() {
+/**
+ * Retrieves course menu data along with its associated course items from the backend.
+ *
+ * Combines both into a single structured object to simplify rendering logic
+ * for DOM factories.
+ *
+ * @returns A Promise resolving to an object of a course menu and courses.
+ */
+export async function getCourseMenuData(): Promise<Array<CourseMenuObj>> {
   const courseMenus = await getCourseMenus();
   const courseMenuObjects = await Promise.all(
     courseMenus.map(async (courseMenu) => {

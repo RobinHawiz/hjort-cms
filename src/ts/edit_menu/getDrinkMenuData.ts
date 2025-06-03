@@ -1,6 +1,14 @@
 import { DrinkEntity, DrinkMenuEntity, DrinkMenuObj } from "@ts/types";
 import { DrinkMenuAPI } from "@ts/utils/api";
 
+/**
+ * Retrieves drink menu data along with its associated drink items from the backend.
+ *
+ * Combines both into a single structured object to simplify rendering logic
+ * for DOM factories.
+ *
+ * @returns A Promise resolving to an object of a drink menu and drinks.
+ */
 export async function getDrinkMenuData() {
   const drinkMenus = await getDrinkMenus();
   const drinkMenuObjects = await Promise.all(

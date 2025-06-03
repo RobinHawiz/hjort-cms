@@ -4,10 +4,13 @@ import { initSmoothScroll } from "@ts/utils/ui";
 import { isUserAuth } from "@ts/utils/api";
 import { getCourseMenuData } from "./getCourseMenuData";
 import { createCourseMenuEditFormsHtml } from "./createCourseMenuEditFormsHtml";
-import { displayMenuEditForms } from "./displayCourseMenuEditForms";
+import { displayMenuEditForms } from "./displayMenuEditForms";
 import { getDrinkMenuData } from "./getDrinkMenuData";
 import { createDrinkMenuEditFormsHtml } from "./createDrinkMenuEditFormsHtml";
 
+/**
+ * Entry point for the redigera-meny page.
+ */
 async function main(): Promise<void> {
   if (!(await isUserAuth())) {
     window.location.replace("/hjort-cms/");

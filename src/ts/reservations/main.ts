@@ -6,6 +6,9 @@ import { createReservationsHtml } from "./createReservationsHtml";
 import { displayReservations } from "./displayReservations";
 import { isUserAuth } from "@ts/utils/api";
 
+/**
+ * Entry point for the bokningar page.
+ */
 async function main(): Promise<void> {
   if (!(await isUserAuth())) {
     window.location.replace("/hjort-cms/");
