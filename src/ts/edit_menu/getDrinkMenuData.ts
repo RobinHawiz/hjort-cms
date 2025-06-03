@@ -7,9 +7,9 @@ import { DrinkMenuAPI } from "@ts/utils/api";
  * Combines both into a single structured object to simplify rendering logic
  * for DOM factories.
  *
- * @returns A Promise resolving to an object of a drink menu and drinks.
+ * @returns A Promise resolving to an array of DrinkMenuObj entries.
  */
-export async function getDrinkMenuData() {
+export async function getDrinkMenuData(): Promise<Array<DrinkMenuObj>> {
   const drinkMenus = await getDrinkMenus();
   const drinkMenuObjects = await Promise.all(
     drinkMenus.map(async (drinkMenu) => {

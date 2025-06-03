@@ -17,14 +17,13 @@ async function main(): Promise<void> {
   }
   initSmoothScroll();
   initNav();
-  removeLoader();
   const [courseMenuObjects, drinkMenuObjects] = await Promise.all([
     getCourseMenuData(),
     getDrinkMenuData(),
   ]);
-
   const CourseMenuFragment = createCourseMenuEditFormsHtml(courseMenuObjects);
   const DrinkMenuFragment = createDrinkMenuEditFormsHtml(drinkMenuObjects);
+  removeLoader();
   displayMenuEditForms(CourseMenuFragment);
   displayMenuEditForms(DrinkMenuFragment);
 }

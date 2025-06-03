@@ -7,7 +7,7 @@ import { CourseMenuAPI } from "@ts/utils/api";
  * Combines both into a single structured object to simplify rendering logic
  * for DOM factories.
  *
- * @returns A Promise resolving to an object of a course menu and courses.
+ * @returns A Promise resolving to an array of CourseMenuObj entries.
  */
 export async function getCourseMenuData(): Promise<Array<CourseMenuObj>> {
   const courseMenus = await getCourseMenus();

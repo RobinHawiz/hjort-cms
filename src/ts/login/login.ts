@@ -43,7 +43,7 @@ async function login(
   form: HTMLFormElement,
   submitButton: SubmitButton
 ): Promise<void> {
-  fetch("http://localhost:4000/api/admin/login", {
+  fetch("https://hjort-backend.azurewebsites.net/api/admin/login", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
