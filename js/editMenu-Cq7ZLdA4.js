@@ -173,4 +173,4 @@ import{a as E,i as I,b as A,c as C}from"./isResponseError-eh5yk8Zt.js";import{f 
                   name="id&op"
                   value="null&${e}"
                 />
-    `,r}function D(n,e,t){n.insertBefore(t,e)}async function K(){await U()||window.location.replace("/hjort-cms/"),A(),C(),O();const[n,e]=await Promise.all([P(),H()]),t=z(n),r=R(e);$(t),$(r)}K();
+    `,r}function D(n,e,t){n.insertBefore(t,e)}async function K(){await U()||window.location.replace("/hjort-cms/"),A(),C();const[n,e]=await Promise.all([P(),H()]),t=z(n),r=R(e);O(),$(t),$(r)}K();
