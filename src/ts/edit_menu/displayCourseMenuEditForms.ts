@@ -1,6 +1,6 @@
 import { isHtmlElement } from "@ts/utils/dom";
 
-export function displayCourseMenuEditForms(fragment: DocumentFragment) {
+export function displayMenuEditForms(fragment: DocumentFragment) {
   const FORM_CONTAINER_SELECTOR = ".form-container";
   const formContainer = document.querySelector(FORM_CONTAINER_SELECTOR);
 

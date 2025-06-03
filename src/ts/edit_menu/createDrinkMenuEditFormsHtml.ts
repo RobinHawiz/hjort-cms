@@ -1,11 +1,10 @@
 import {
-  CourseMenuObj,
-  CourseMenuPayload,
-  CoursePayload,
-  CourseType,
-  CourseUpdatePayload,
+  DrinkMenuObj,
+  DrinkMenuPayload,
+  DrinkPayload,
+  DrinkUpdatePayload,
 } from "@ts/types";
-import { CourseMenuAPI } from "@ts/utils/api";
+import { DrinkMenuAPI } from "@ts/utils/api";
 import { displayError, escapeHtml } from "@ts/utils/dom";
 import { isResponseError } from "@ts/utils/error";
 import { SubmitButton } from "@ts/utils/ui";
@@ -13,63 +12,50 @@ import { SubmitButton } from "@ts/utils/ui";
 type OperationType = "none" | "add" | "delete" | "update";
 
 /**
- * A DOM factory for rendering an edit form for editing course menu and course entries.
+ * A DOM factory for rendering an edit form for editing drink menu and drink entries.
  *
- * @param courseMenuObjects - The course menu and course entries to render within the edit form.
+ * @param drinkMenuObjects - The drink menu and drink entries to render within the edit form.
  * @returns A DocumentFragment containing the rendered elements.
  */
-export function createCourseMenuEditFormsHtml(
-  courseMenuObjects: Array<CourseMenuObj>
+export function createDrinkMenuEditFormsHtml(
+  drinkMenuObjects: Array<DrinkMenuObj>
 ): DocumentFragment {
   const fragment = document.createDocumentFragment();
-  courseMenuObjects.forEach((courseMenuObj) => {
-    const courseMenu = courseMenuObj.courseMenu;
-    const courses = courseMenuObj.courses;
+  drinkMenuObjects.forEach((drinkMenuObj, i) => {
+    const drinkMenu = drinkMenuObj.drinkMenu;
+    const drinks = drinkMenuObj.drinks;
     const form = document.createElement("form");
-    form.dataset.id = courseMenu.id;
+    form.dataset.id = drinkMenu.id;
     form.innerHTML = `
               <form>
             <div class="input-box-wrapper">
-              <h2 id="menu-title">Meny huvudrubrik</h2>
+              <h2 id="drink-menu-title">Rubrik för dryckeslista ${i + 1}</h2>
               <div class="input-box">
                 <input
                   type="text"
-                  id="title"
                   name="title"
-                  value="${escapeHtml(courseMenu.title)}"
-                  aria-labelledby="menu-title"
+                  value="${escapeHtml(drinkMenu.title)}"
+                  aria-labelledby="drink-menu-title"
                 />
               </div>
             </div>
             <div class="input-box-wrapper">
-              <h3 id="starter-title">Förrätter</h3>
-              <button
-                type="button"
-                data-type="starter"
-                class="add-course"
-                aria-label="Lägg till en maträtt"
-              >
-                <img src="../plus.svg" alt="Plus ikon" />
-              </button>
+              <h3 id="drink-menu-subtitle">Listans underrubrik</h3>
+              <div class="input-box">
+                <input
+                  type="text"
+                  name="subtitle"
+                  value="${escapeHtml(drinkMenu.subtitle)}"
+                  aria-labelledby="drink-menu-subtitle"
+                />
+              </div>
             </div>
             <div class="input-box-wrapper">
-              <h3 id="main-title">Huvudrätter</h3>
+              <h3 id="drinks-title">Drycker</h3>
               <button
                 type="button"
-                data-type="main"
-                class="add-course"
-                aria-label="Lägg till en maträtt"
-              >
-                <img src="../plus.svg" alt="Plus ikon" />
-              </button>
-            </div>
-            <div class="input-box-wrapper">
-              <h3 id="dessert-title">Efterrätter</h3>
-              <button
-                type="button"
-                data-type="dessert"
-                class="add-course"
-                aria-label="Lägg till en maträtt"
+                class="add-drink"
+                aria-label="Lägg till en dryck"
               >
                 <img src="../plus.svg" alt="Plus ikon" />
               </button>
@@ -80,7 +66,7 @@ export function createCourseMenuEditFormsHtml(
                 <input
                   type="number"
                   name="priceTot"
-                  value="${courseMenu.priceTot}"
+                  value="${drinkMenu.priceTot}"
                   aria-labelledby="price-title"
                 />
               </div>
@@ -92,18 +78,15 @@ export function createCourseMenuEditFormsHtml(
           </form>
     `;
 
-    const inputBoxWrappers = form.querySelectorAll(".input-box-wrapper");
-    const btnsAddCourse = form.querySelectorAll(
-      "button.add-course"
-    ) as NodeListOf<HTMLElement>;
+    const inputBoxWrapper = form.querySelector(
+      ".input-box-wrapper:nth-child(3)"
+    )!;
+    const btnAddDrink = form.querySelector(
+      "button.add-drink"
+    ) as HTMLButtonElement;
     let index = 1;
-    courses.forEach((course) => {
-      const inputBox = createInputBox(
-        course.name,
-        course.type,
-        "none",
-        course.id
-      );
+    drinks.forEach((drink) => {
+      const inputBox = createInputBox(drink.name, "none", drink.id);
 
       const displayedInput = inputBox.querySelector(
         "input:nth-child(1)"
@@ -134,22 +117,16 @@ export function createCourseMenuEditFormsHtml(
         }
       });
 
-      displayInputBox(inputBoxWrappers, btnsAddCourse, inputBox, course.type);
+      displayInputBox(inputBoxWrapper, btnAddDrink, inputBox);
 
       index++;
     });
 
     /* Add functionality */
 
-    btnsAddCourse.forEach((addBtn) => {
-      addBtn.addEventListener("click", () => {
-        const courseType = addBtn.dataset.type as
-          | "starter"
-          | "main"
-          | "dessert";
-        const inputBox = createInputBox("", courseType, "add");
-        displayInputBox(inputBoxWrappers, btnsAddCourse, inputBox, courseType);
-      });
+    btnAddDrink.addEventListener("click", () => {
+      const inputBox = createInputBox("", "add");
+      displayInputBox(inputBoxWrapper, btnAddDrink, inputBox);
     });
 
     form.addEventListener("submit", handleOnSubmit);
@@ -165,10 +142,11 @@ async function handleOnSubmit(e: SubmitEvent) {
   const submitButton = new SubmitButton(updateButton);
   const form = e.target as HTMLFormElement;
   const formData = new FormData(form);
-  const api = new CourseMenuAPI();
+  const api = new DrinkMenuAPI();
 
-  const courseMenuPayload: CourseMenuPayload = {
+  const drinkMenuPayload: DrinkMenuPayload = {
     title: String(formData.get("title")),
+    subtitle: String(formData.get("subtitle")),
     priceTot: Number(formData.get("priceTot")),
   };
 
@@ -183,32 +161,30 @@ async function handleOnSubmit(e: SubmitEvent) {
   submitButton.showLoader();
   setTimeout(async () => {
     try {
-      await api.updateCourseMenu(form.dataset.id!, courseMenuPayload);
+      await api.updateDrinkMenu(form.dataset.id!, drinkMenuPayload);
 
-      const courseNames = formData.getAll("course");
-      const courseIdsTypesOps = formData.getAll("id&type&op");
+      const drinkNames = formData.getAll("drink");
+      const drinkIdsTypesOps = formData.getAll("id&op");
       await Promise.all(
-        courseNames.map(async (courseName, i) => {
-          const name = String(courseName);
-          const courseIdTypeOpArr = String(courseIdsTypesOps[i]).split("&");
-          const [id, type, op] = courseIdTypeOpArr;
+        drinkNames.map(async (drinkName, i) => {
+          const name = String(drinkName);
+          const drinkIdTypeOpArr = String(drinkIdsTypesOps[i]).split("&");
+          const [id, op] = drinkIdTypeOpArr;
 
           switch (op) {
             case "add":
-              await api.insertCourse({
-                courseMenuId: form.dataset.id,
+              await api.insertDrink({
+                drinkMenuId: form.dataset.id,
                 name,
-                type,
-              } as CoursePayload);
+              } as DrinkPayload);
               break;
             case "update":
-              await api.updateCourse(id, {
+              await api.updateDrink(id, {
                 name,
-                type,
-              } as CourseUpdatePayload);
+              } as DrinkUpdatePayload);
               break;
             case "delete":
-              await api.deleteCourse(id);
+              await api.deleteDrink(id);
               break;
             default:
               // Do nothing
@@ -232,7 +208,7 @@ async function handleOnSubmit(e: SubmitEvent) {
       submitButton.hideLoader();
       if (isResponseError(error[0])) {
         if (
-          ["title", "priceTot", "name", "type", "courseMenuId"].includes(
+          ["title", "subtitle", "priceTot", "name", "drinkMenuId"].includes(
             error[0].field
           )
         ) {
@@ -259,45 +235,44 @@ function changeInputOperation(
   hiddenInput: HTMLInputElement,
   operation: string
 ): void {
-  let [id, type, op] = hiddenInput.value.split("&");
+  let [id, op] = hiddenInput.value.split("&");
   op = operation;
-  hiddenInput.value = [id, type, op].join("&");
+  hiddenInput.value = [id, op].join("&");
 }
 
 function createInputBox(
-  courseName: string,
-  courseType: CourseType,
+  drinkName: string,
   op: OperationType,
-  courseId = ""
+  drinkId = ""
 ): HTMLElement {
   const inputBox = document.createElement("div");
   inputBox.classList.add("input-box");
   /* 
-    There's an Input with type hidden which has name="id&type&op" which represent 
-    course id, course type values and which operation is to be executed on that specific input. Example values:
-    - 2&starter&update
-    - 3&starter&delete
-    - 4&main&add
-    - 4&main&none
+    There's an Input with type hidden which has name="id&op" which represent 
+    drink id value and which operation is to be executed on that specific input. Example values:
+    - 2&update
+    - 3&delete
+    - 4&add
+    - 4&none
     The symbol & is used as a seperator in order to access these values with the method .split("&")
     */
-  if (courseId.length !== 0) {
+  if (drinkId.length !== 0) {
     inputBox.innerHTML = `
                 <input
                   type="text"
-                  name="course"
-                  value="${escapeHtml(courseName)}"
-                  aria-labelledby="${courseType}-title"
+                  name="drink"
+                  value="${escapeHtml(drinkName)}"
+                  aria-labelledby="drinks-title"
                 />
                 <input
                   type="hidden"
-                  name="id&type&op"
-                  value="${courseId}&${courseType}&${op}"
+                  name="id&op"
+                  value="${drinkId}&${op}"
                 />
                 <button
                   type="button"
                   class="delete"
-                  aria-label="Ta bort maträtt"
+                  aria-label="Ta bort dryck"
                 >
                   <img src="../trash.svg" alt="Skräpkorg ikon" />
                 </button>
@@ -306,14 +281,14 @@ function createInputBox(
     inputBox.innerHTML = `
                 <input
                   type="text"
-                  name="course"
-                  value="${escapeHtml(courseName)}"
-                  aria-labelledby="${courseType}-title"
+                  name="drink"
+                  value="${escapeHtml(drinkName)}"
+                  aria-labelledby="drinks-title"
                 />
                 <input
                   type="hidden"
-                  name="id&type&op"
-                  value="null&${courseType}&${op}"
+                  name="id&op"
+                  value="null&${op}"
                 />
     `;
   }
@@ -322,16 +297,9 @@ function createInputBox(
 }
 
 function displayInputBox(
-  inputBoxWrappers: NodeListOf<Element>,
-  btnsAddCourse: NodeListOf<Element>,
-  inputBox: HTMLElement,
-  courseType: CourseType
+  inputBoxWrapper: Element,
+  btnAddDrink: HTMLButtonElement,
+  inputBox: Element
 ): void {
-  if (courseType === "starter") {
-    inputBoxWrappers[1].insertBefore(inputBox, btnsAddCourse[0]);
-  } else if (courseType === "main") {
-    inputBoxWrappers[2].insertBefore(inputBox, btnsAddCourse[1]);
-  } else {
-    inputBoxWrappers[3].insertBefore(inputBox, btnsAddCourse[2]);
-  }
+  inputBoxWrapper.insertBefore(inputBox, btnAddDrink);
 }

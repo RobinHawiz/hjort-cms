@@ -145,7 +145,8 @@ button:focus:not(:focus-visible) {
           background-color: color.adjust(v.$delete-bg-color, $lightness: -5%);
         }
       }
-      &.add-course {
+      &.add-course,
+      &.add-drink {
         background-color: v.$add-bg-color;
         &:hover {
           background-color: color.adjust(v.$add-bg-color, $lightness: -5%);

@@ -11,7 +11,9 @@ import { fetchData } from "@ts/utils/api";
  * Provides methods to interact with the Course menu API.
  */
 export class CourseMenuAPI {
-  constructor(private readonly apiUrl = "http://localhost:4000/api") {}
+  constructor(
+    private readonly apiUrl = "https://hjort-backend.azurewebsites.net/api"
+  ) {}
 
   /**
    * Retrieves all course menu entities via GET /api/public/course-menu

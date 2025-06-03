@@ -65,6 +65,8 @@ async function login(
       window.location.replace("/hjort-cms/bokningar/");
     })
     .catch((error) => {
+      submitButton.enable();
+      submitButton.hideLoader();
       if (isResponseError(error)) {
         if (error.field === "login") {
           form.classList.add("validation-error");

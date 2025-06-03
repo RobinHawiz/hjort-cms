@@ -1,17 +1,19 @@
 @use "../abstracts/mixins" as m;
 
 body > .error {
+  display: inline-block;
   position: fixed;
   left: 50%;
   transform: translateX(-50%);
   max-width: 71rem;
-  width: 70%;
   padding: 1rem;
   margin-bottom: 1.3rem;
   border-radius: 1rem;
   pointer-events: none;
+  z-index: 10;
   animation: slide-in-body 0.2s ease 0s forwards;
   @include m.media-query(mobile) {
+    width: 75%;
     margin-left: 2.5rem;
     animation: slide-in-body-mobile 0.2s ease 0s forwards;
   }
@@ -29,6 +31,7 @@ body > .error {
   margin-bottom: 1.3rem;
   border-radius: 1rem;
   pointer-events: none;
+  z-index: 10;
   animation: slide-in-login 0.2s ease 0s forwards;
   @include m.media-query(mobile) {
     animation: slide-in-login-mobile 0.2s ease 0s forwards;
