@@ -6,14 +6,14 @@ import {
   CourseUpdatePayload,
 } from "@ts/types";
 import { fetchData } from "@ts/utils/api";
+const DEFAULT_API_BASE_URL = "https://hjort-backend.azurewebsites.net/api";
+const baseUrl = import.meta.env.VITE_API_BASE_URL ?? DEFAULT_API_BASE_URL;
 
 /**
  * Provides methods to interact with the Course menu API.
  */
 export class CourseMenuAPI {
-  constructor(
-    private readonly apiUrl = "https://hjort-backend.azurewebsites.net/api"
-  ) {}
+  constructor(private readonly apiUrl = baseUrl) {}
 
   /**
    * Retrieves all course menu entities via GET /api/public/course-menu

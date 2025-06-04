@@ -6,14 +6,14 @@ import {
   DrinkUpdatePayload,
 } from "@ts/types";
 import { fetchData } from "@ts/utils/api";
+const DEFAULT_API_BASE_URL = "https://hjort-backend.azurewebsites.net/api";
+const baseUrl = import.meta.env.VITE_API_BASE_URL ?? DEFAULT_API_BASE_URL;
 
 /**
  * Provides methods to interact with the Drink menu API.
  */
 export class DrinkMenuAPI {
-  constructor(
-    private readonly apiUrl = "https://hjort-backend.azurewebsites.net/api"
-  ) {}
+  constructor(private readonly apiUrl = baseUrl) {}
 
   /**
    * Retrieves all drink menu entities via GET /api/public/drink-menu

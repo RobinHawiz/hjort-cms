@@ -1,6 +1,8 @@
 import { displayError, isHtmlElement } from "@ts/utils/dom";
 import { isResponseError } from "@ts/utils/error";
 import { SubmitButton } from "@ts/utils/ui";
+const DEFAULT_API_BASE_URL = "https://hjort-backend.azurewebsites.net/api";
+const baseUrl = import.meta.env.VITE_API_BASE_URL ?? DEFAULT_API_BASE_URL;
 
 export function initLogin(): void {
   const LOGIN_FORM_SELECTOR = "form";
@@ -43,7 +45,7 @@ async function login(
   form: HTMLFormElement,
   submitButton: SubmitButton
 ): Promise<void> {
-  fetch("https://hjort-backend.azurewebsites.net/api/admin/login", {
+  fetch(`${baseUrl}/admin/login`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
